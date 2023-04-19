@@ -5,6 +5,7 @@ import com.example.bloglv2.post.dto.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -13,22 +14,24 @@ public class Post extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userid;
+    @Column(nullable = false)
+    private Long userId;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
     private String username;
-    private String password;
 
-    public Post(PostRequestDto postRequestDto) {
+    public Post(PostRequestDto postRequestDto, Long userId, String username) {
         this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
-        this.username = postRequestDto.getUsername();
-        this.password = postRequestDto.getPassword();
+        this.userId = userId;
+        this.username = username;
     }
 
     public void update(PostRequestDto postRequestDto) {
         this.content = postRequestDto.getContent();
         this.title = postRequestDto.getTitle();
-        this.username = postRequestDto.getUsername();
     }
 }

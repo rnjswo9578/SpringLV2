@@ -35,6 +35,7 @@ public class UserService {
             return new ResponseDto("비밀번호를 다시 입력해 주세요!", 100);
         }
 
+        //
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
             throw new IllegalArgumentException("해당 유져가 이미 있습니다!");

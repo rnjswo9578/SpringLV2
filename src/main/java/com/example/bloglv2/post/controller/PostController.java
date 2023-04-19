@@ -4,8 +4,10 @@ import com.example.bloglv2.global.dto.ResponseDto;
 import com.example.bloglv2.post.dto.PostRequestDto;
 import com.example.bloglv2.post.dto.PostResponseDto;
 import com.example.bloglv2.post.service.PostServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -15,10 +17,9 @@ import java.util.List;
 public class PostController {
     private final PostServiceImpl postService;
 
-
     @PostMapping
-    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto){
-        return postService.createPost(postRequestDto);
+    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto, HttpServletRequest httpServletRequest){
+        return postService.createPost(postRequestDto, httpServletRequest);
     }
 
     @GetMapping("/{id}")
@@ -33,13 +34,13 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto){
-        return postService.updatePost(postRequestDto, id);
+    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest httpServletRequest){
+        return postService.updatePost(id, postRequestDto, httpServletRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto){
-        return postService.deletePost(id, postRequestDto);
+    public ResponseDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest httpServletRequest){
+        return postService.deletePost(id, postRequestDto, httpServletRequest);
     }
 
 }
