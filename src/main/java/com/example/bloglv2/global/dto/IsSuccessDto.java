@@ -6,9 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IsSuccessDto {
-    private boolean success;
+    private String msg;
+    private int statusCode;
 
-    public IsSuccessDto(boolean success) {
-        this.success = success;
+    public IsSuccessDto(String msg, int statusCode) {
+        this.msg = msg;
+        this.statusCode = statusCode;
     }
 }

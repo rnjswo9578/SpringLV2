@@ -44,9 +44,9 @@ public class PostServiceImpl{
         Post post = checkPost(id);
         if (postRequestDto.getPassword().equals(post.getPassword())) {
             postRepository.delete(post);
-            return new IsSuccessDto(true);
+            return new IsSuccessDto("삭제 성공", 100);
         }
-        return new IsSuccessDto(false);
+        return new IsSuccessDto("삭제 실패",100);
     }
 
     private Post checkPost(Long id){
