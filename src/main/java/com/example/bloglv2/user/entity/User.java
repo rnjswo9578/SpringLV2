@@ -1,6 +1,5 @@
 package com.example.bloglv2.user.entity;
 
-import com.example.bloglv2.global.entity.Timestamped;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.regex.Pattern;
 
 import java.util.Optional;
 
@@ -24,6 +25,15 @@ public class UserService {
     public ResponseDto signup(SignupRequestDto signupRequestDto) {
         String username = signupRequestDto.getUsername();
         String password = signupRequestDto.getPassword();
+
+        // 아이디 비밀번호 유효성 확인
+        // @Pattern 같은 어노테이션으로 가능 => html 을 구현을 안했기 때문에 service 에서 해결
+        if (username.length() < 4 || username.length() > 10 || !Pattern.matches("[a-z0-9]*$", username)) {
+            return new ResponseDto("아이디를 다시 입력해 주세요!", 100);
+        }
+        if (password.length() < 8 || password.length() > 15 || !Pattern.matches("[A-Za-z0-9]*$", password)) {
+            return new ResponseDto("비밀번호를 다시 입력해 주세요!", 100);
+        }
 
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
