@@ -1,6 +1,10 @@
 package com.example.bloglv2.user.controller;
 
+import com.example.bloglv2.global.dto.ResponseDto;
+import com.example.bloglv2.user.dto.LoginRequestDto;
+import com.example.bloglv2.user.dto.SignupRequestDto;
 import com.example.bloglv2.user.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +30,12 @@ public class UserController {
 //    }
 
     @PostMapping("/signup")
-    public String signup(){
-        return null;
+    public ResponseDto signup(SignupRequestDto signupRequestDto){
+        return userService.signup(signupRequestDto);
     }
 
     @PostMapping("/login")
-    public String login(){
-        return null;
+    public ResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
+        return userService.login(loginRequestDto, httpServletResponse);
     }
 }
