@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity(name = "users")
 @NoArgsConstructor
-public class User extends Timestamped {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -7,9 +7,7 @@ import com.example.bloglv2.user.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,13 +27,15 @@ public class UserController {
 //        return new ModelAndView("static 페이지");
 //    }
 
+    @ResponseBody
     @PostMapping("/signup")
-    public ResponseDto signup(SignupRequestDto signupRequestDto){
+    public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto){
         return userService.signup(signupRequestDto);
     }
 
+    @ResponseBody
     @PostMapping("/login")
-    public ResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
+    public ResponseDto login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
         return userService.login(loginRequestDto, httpServletResponse);
     }
 }

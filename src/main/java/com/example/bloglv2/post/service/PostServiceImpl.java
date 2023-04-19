@@ -1,6 +1,6 @@
 package com.example.bloglv2.post.service;
 
-import com.example.bloglv2.global.dto.IsSuccessDto;
+import com.example.bloglv2.global.dto.ResponseDto;
 import com.example.bloglv2.post.dto.PostRequestDto;
 import com.example.bloglv2.post.dto.PostResponseDto;
 import com.example.bloglv2.post.entity.Post;
@@ -40,13 +40,13 @@ public class PostServiceImpl{
         return new PostResponseDto(post);
     }
 
-    public IsSuccessDto deletePost(Long id, PostRequestDto postRequestDto) {
+    public ResponseDto deletePost(Long id, PostRequestDto postRequestDto) {
         Post post = checkPost(id);
         if (postRequestDto.getPassword().equals(post.getPassword())) {
             postRepository.delete(post);
-            return new IsSuccessDto("삭제 성공", 100);
+            return new ResponseDto("삭제 성공", 100);
         }
-        return new IsSuccessDto("삭제 실패",100);
+        return new ResponseDto("삭제 실패",100);
     }
 
     private Post checkPost(Long id){

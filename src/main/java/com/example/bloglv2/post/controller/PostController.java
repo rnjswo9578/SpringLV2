@@ -1,6 +1,6 @@
 package com.example.bloglv2.post.controller;
 
-import com.example.bloglv2.global.dto.IsSuccessDto;
+import com.example.bloglv2.global.dto.ResponseDto;
 import com.example.bloglv2.post.dto.PostRequestDto;
 import com.example.bloglv2.post.dto.PostResponseDto;
 import com.example.bloglv2.post.service.PostServiceImpl;
@@ -38,7 +38,7 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public IsSuccessDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto){
+    public ResponseDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto){
         return postService.deletePost(id, postRequestDto);
     }
 
