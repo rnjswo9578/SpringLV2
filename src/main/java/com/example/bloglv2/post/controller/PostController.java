@@ -39,8 +39,8 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest httpServletRequest){
-        return postService.deletePost(id, postRequestDto, httpServletRequest);
+    public ResponseDto deletePost(@PathVariable Long id, HttpServletRequest httpServletRequest){
+        return postService.deletePost(id, httpServletRequest);
     }
 
 }

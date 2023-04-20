@@ -89,7 +89,7 @@ public class PostServiceImpl{
         }
     }
 
-    public ResponseDto deletePost(Long id, PostRequestDto postRequestDto, HttpServletRequest httpServletRequest) {
+    public ResponseDto deletePost(Long id, HttpServletRequest httpServletRequest) {
 
         String token = jwtUtil.resolveToken(httpServletRequest);
         Claims claims;
@@ -108,7 +108,7 @@ public class PostServiceImpl{
                 postRepository.delete(post);
             }
 
-            return new ResponseDto("삭제 성공", 100);
+            return new ResponseDto("삭제 성공", 200);
         } else {
             return new ResponseDto("삭제 실패",100);
         }
