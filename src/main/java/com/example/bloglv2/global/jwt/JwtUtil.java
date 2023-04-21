@@ -50,8 +50,7 @@ public class JwtUtil {
     public String createToken(String username) {
         Date date = new Date();
 
-        return BEARER_PREFIX +
-                Jwts.builder()
+        return BEARER_PREFIX + Jwts.builder()
                         .setSubject(username) //username 넣기
                         .claim(AUTHORIZATION_KEY, UserRoleEnum.USER) //
                         .setExpiration(new Date(date.getTime() + TOKEN_TIME))
